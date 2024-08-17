@@ -12,3 +12,12 @@ export const createUser = internalMutation({
     });
   },
 });
+
+export const getUserByEmail = query({
+  args: {
+    email: v.string(),
+  }, 
+  async handler(ctx, args) {
+    return await ctx.db.query("users").filter(q => q.eq(q.field("email"), args.email)).first();
+  },
+})
