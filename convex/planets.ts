@@ -1,3 +1,4 @@
+// planets.ts
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
@@ -27,5 +28,17 @@ export const getPlanet = query({
   args: { planetId: v.id("planets") },
   handler: async (ctx, args) => {
     return await ctx.db.get(args.planetId);
+  },
+});
+
+export const getPlanets = query({
+  args: {
+    planetIds: v.array(v.id("planets")),
+  },
+  handler: async (ctx, args) => {
+    const planets = await Promise.all(
+      args.planetIds.map((id) => ctx.db.get(id))
+    );
+    return planets.filter((planet): planet is NonNullable<typeof planet> => planet !== null);
   },
 });

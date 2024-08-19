@@ -39,6 +39,13 @@ export const createBooking = mutation({
   },
 });
 
+export const getBooking = query({
+  args: { bookingId: v.id("bookings") },
+  handler: async (ctx, args): Promise<Booking | null> => {
+    return await ctx.db.get(args.bookingId) as Booking;
+  },
+})
+
 export const listUserBookings = query({
   args: { userId: v.id("users") },
   handler: async (ctx, args): Promise<Booking[]> => {

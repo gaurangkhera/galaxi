@@ -160,42 +160,6 @@ export default function TransitApp() {
           </div>
         </CardContent>
       </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Your Bookings</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>From</TableHead>
-                <TableHead>To</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Quantity</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Action</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {userBookings?.map((booking: any) => (
-                <TableRow key={booking._id}>
-                  <TableCell>{booking.transit?.fromPlanet?.name}</TableCell>
-                  <TableCell>{booking.transit?.toPlanet?.name}</TableCell>
-                  <TableCell>{booking.bookingType}</TableCell>
-                  <TableCell>{booking.quantity}</TableCell>
-                  <TableCell>{booking.status}</TableCell>
-                  <TableCell>
-                    <Button onClick={() => handleCancelBooking(booking._id)} disabled={booking.status === 'cancelled'}>
-                      Cancel
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
     </div>
   );
 }

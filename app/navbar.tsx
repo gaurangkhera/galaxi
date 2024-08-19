@@ -1,33 +1,36 @@
-"use client";
-
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { UserButton } from '@clerk/nextjs';
-import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
+
   return (
-    <motion.nav
-      className="w-full py-4 px-8 flex justify-between items-center bg-gradient-to-r from-gray-900 via-black to-gray-900 backdrop-blur-md shadow-md"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Link href="/" className="text-2xl font-bold bold text-indigo-500 hover:text-red-300">
-        Galaxi
-      </Link>
-      <div className="space-x-4 flex items-center">
-        <Link href="/transits" className="hover:text-gray-400 text-white">
-          Travel
-        </Link>
-        <Link href="/dashboard" className="hover:text-gray-400 text-white">
-          Dashboard
-        </Link>
-        <UserButton afterSignOutUrl="/" />
+    <nav className="w-full py-4 px-6 md:px-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex justify-between items-center">
+          <Link href="/" className="text-2xl font-bold">
+            Galaxi.
+          </Link>
+
+          {/* Desktop menu */}
+          <div className="hidden md:flex space-x-4">
+          <Link href='/transits'>Available Transits</Link>
+          <Link href='/dashboard'>Dashboard</Link>
+
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <SignedOut>
+            <Button>Sign in</Button>
+          </SignedOut>
+          </div>
+
+        </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
 export default Navbar;
-
