@@ -63,13 +63,13 @@ export const HeroCards = () => {
       <Card className="absolute top-[150px] left-[50px] w-72  drop-shadow-xl shadow-black/10 dark:shadow-white/10">
         <CardHeader>
           <CardTitle className="flex item-center justify-between">
-            Shuttle Pass
+            Voyager
             <Badge>
-              Most popular
+              Popular
             </Badge>
           </CardTitle>
           <div>
-            <span className="text-3xl font-bold">$100</span>
+            <span className="text-3xl font-bold">$399</span>
             <span className="text-muted-foreground"> /month</span>
           </div>
 
