@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { ArrowRight, Check} from "lucide-react";
 import { LightBulbIcon } from "./Icons";
+import Link from "next/link";
 
 export const HeroCards = () => {
   return (
@@ -78,7 +79,7 @@ export const HeroCards = () => {
         </CardHeader>
 
         <CardContent>
-          <Button className="w-full gap-1.5">Pricing <ArrowRight className="w-5 h-5" /></Button>
+          <Link href='/pricing' passHref><Button className="w-full gap-1.5">Pricing <ArrowRight className="w-5 h-5" /></Button></Link>
         </CardContent>
 
         <hr className="w-4/5 m-auto mb-4" />

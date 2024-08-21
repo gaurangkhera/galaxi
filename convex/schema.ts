@@ -7,6 +7,7 @@ export default defineSchema(
       name: v.string(),
       email: v.string(),
       tokenIdentifier: v.string(),
+      stripeId: v.optional(v.string()),
     })
       .index("by_tokenIdentifier", ["tokenIdentifier"])
       .index("by_email", ["email"]),

@@ -1,5 +1,5 @@
 import { mutation, query } from "./_generated/server";
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 import { Id } from "./_generated/dataModel";
 
 interface Booking {
@@ -19,6 +19,7 @@ export const createBooking = mutation({
     quantity: v.number(),
   },
   handler: async (ctx, args): Promise<Id<"bookings">> => {
+
     const transit = await ctx.db.get(args.transitId);
     if (!transit) throw new Error("Transit not found");
 

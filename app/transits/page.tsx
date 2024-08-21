@@ -10,11 +10,14 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+
 
 export default function TransitApp() {
   const { user, isLoaded: isUserLoaded } = useUser();
   const userEmail = user?.emailAddresses[0]?.emailAddress;
-
+  const router = useRouter();
   const currentUser = useQuery(api.users.getUserByEmail, 
     isUserLoaded && userEmail ? { email: userEmail } : 'skip'
   );
@@ -40,7 +43,13 @@ export default function TransitApp() {
     return planets?.find(planet => planet._id === planetId)?.name || 'Unknown';
   };
 
-  const handleCreateBooking = () => {
+  const handleCreateBooking = async () => {
+
+    if(!currentUser.stripeId) {
+      await router.push('/pricing');
+      return;
+    }
+
     if (selectedTransit) {
       const promise = createBooking({
         userId: currentUser._id as Id<"users">,
@@ -49,6 +58,13 @@ export default function TransitApp() {
         quantity
       });
 
+      toast.promise(promise, {
+        success: "Transit booked successfully.",
+        error: "Failed to book transit",
+        loading: "Booking transit..."
+      })
+
+      router.push('/dashboard')
       
     }
   };
