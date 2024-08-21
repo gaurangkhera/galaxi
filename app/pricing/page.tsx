@@ -20,13 +20,13 @@ const PricingTier = ({ name, price, features, Icon, antifeatures, priceId, onSub
     <CardContent className="flex-grow">
       <div className="text-3xl font-bold mb-5">${price}<span className="text-xl font-normal">/mo</span></div>
       <ul className="space-y-2">
-        {features.map((feature, index) => (
+        {features.map((feature: any, index: any) => (
           <li key={index} className="flex items-center text-sm">
             <CircleCheck className="h-4 w-4 mr-2 flex-shrink-0" />
             <span>{feature}</span>
           </li>
         ))}
-        {antifeatures?.map((antifeature, index) => (
+        {antifeatures?.map((antifeature: any, index: any) => (
           <li key={index} className="flex items-center text-sm">
             <CircleX className="h-4 w-4 mr-2 flex-shrink-0" />
             <span>{antifeature}</span>
