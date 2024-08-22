@@ -23,7 +23,7 @@ const Navbar = () => {
             <UserButton />
           </SignedIn>
           <SignedOut>
-            <SignInButton>
+            <SignInButton mode='modal'>
               <Button>
                 Sign in
               </Button>

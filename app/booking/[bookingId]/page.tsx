@@ -48,7 +48,8 @@ const BookingDetails: React.FC = () => {
     );
   }
 
-  const { fromPlanet, toPlanet, departureTime, arrivalTime, eta } = transitDetails;
+  const { fromPlanet, toPlanet, departureTime, arrivalTime } = transitDetails;
+  const eta = Math.floor((arrivalTime - departureTime) / 3600000);
   const departureDate = new Date(departureTime);
   const arrivalDate = new Date(arrivalTime);
 

@@ -45,9 +45,8 @@ export default function TransitApp() {
 
   const handleCreateBooking = async () => {
 
-    //@ts-ignore
-    if(!currentUser.stripeId) {
 
+    if(!currentUser?.stripeId) {
       await router.push('/pricing');
       return;
     }
