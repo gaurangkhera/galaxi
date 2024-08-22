@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 
 const Navbar = () => {
@@ -23,7 +23,11 @@ const Navbar = () => {
             <UserButton />
           </SignedIn>
           <SignedOut>
-            <Button>Sign in</Button>
+            <SignInButton>
+              <Button>
+                Sign in
+              </Button>
+            </SignInButton>
           </SignedOut>
           </div>
 
